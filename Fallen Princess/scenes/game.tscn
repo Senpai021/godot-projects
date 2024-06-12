@@ -583,19 +583,29 @@ position = Vector2(950, -414)
 [node name="Coin13" parent="Coins" instance=ExtResource("4_vwwr2")]
 position = Vector2(936, -24)
 
-[node name="Labels" type="Node" parent="."]
+[node name="Coin18" parent="Coins" instance=ExtResource("4_vwwr2")]
+position = Vector2(228, -208)
 
-[node name="Label" type="Label" parent="Labels"]
+[node name="Coin19" parent="Coins" instance=ExtResource("4_vwwr2")]
+position = Vector2(408, -349)
+
+[node name="Coin20" parent="Coins" instance=ExtResource("4_vwwr2")]
+position = Vector2(569, -369)
+
+[node name="Text Labels" type="Node" parent="."]
+
+[node name="Label" type="Label" parent="Text Labels"]
 offset_left = -99.0
 offset_top = 17.0
 offset_right = 73.0
-offset_bottom = 28.0
+offset_bottom = 41.0
 theme_override_colors/font_color = Color(0.0117647, 0.14902, 0.34902, 1)
 theme_override_fonts/font = ExtResource("7_uv4mk")
 theme_override_font_sizes/font_size = 8
-text = "Space to jump"
+text = "Space to jump
+Shift to dash"
 
-[node name="Label4" type="Label" parent="Labels"]
+[node name="Label4" type="Label" parent="Text Labels"]
 offset_left = 839.0
 offset_top = -478.0
 offset_right = 1071.0
@@ -605,7 +615,7 @@ theme_override_fonts/font = ExtResource("7_uv4mk")
 theme_override_font_sizes/font_size = 8
 text = "You made it! Press ENTER to restart"
 
-[node name="Label2" type="Label" parent="Labels"]
+[node name="Label2" type="Label" parent="Text Labels"]
 offset_left = 393.0
 offset_top = 10.0
 offset_right = 565.0
@@ -615,7 +625,7 @@ theme_override_fonts/font = ExtResource("7_uv4mk")
 theme_override_font_sizes/font_size = 8
 text = "Falling hurts"
 
-[node name="Label3" type="Label" parent="Labels"]
+[node name="Label3" type="Label" parent="Text Labels"]
 offset_left = 799.0
 offset_top = -95.0
 offset_right = 971.0
@@ -625,7 +635,7 @@ theme_override_fonts/font = ExtResource("7_uv4mk")
 theme_override_font_sizes/font_size = 8
 text = "Almost there..."
 
-[node name="Label5" type="Label" parent="Labels"]
+[node name="Label5" type="Label" parent="Text Labels"]
 offset_left = 1027.0
 offset_top = -100.0
 offset_right = 1167.0
@@ -642,12 +652,43 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Control"]
+[node name="UI" type="CanvasLayer" parent="Control"]
 
-[node name="FPSMeter" type="Label" parent="Control/CanvasLayer"]
-offset_top = 4.0
-offset_right = 40.0
-offset_bottom = 27.0
+[node name="Panel" type="Panel" parent="Control/UI"]
+clip_children = 2
+anchors_preset = -1
+anchor_right = 0.369181
+anchor_bottom = 0.0418025
+offset_right = -0.296021
+offset_bottom = 19.912
+grow_horizontal = 2
+size_flags_horizontal = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="FPSMeter" type="Label" parent="Control/UI/Panel"]
+clip_children = 2
+layout_mode = 1
+offset_right = 84.0
+offset_bottom = 23.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("9_7putb")
 theme_override_font_sizes/font_size = 16
+text = "FPS: 0"
+vertical_alignment = 1
 script = ExtResource("10_4lmgj")
+
+[node name="CoinCounter" type="Label" parent="Control/UI/Panel"]
+unique_name_in_owner = true
+clip_children = 2
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_7putb")
+theme_override_font_sizes/font_size = 16

@@ -4,7 +4,7 @@ extends CharacterBody2D
 
 const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
-const DOUBLE_JUMP_VELOCITY = JUMP_VELOCITY / 2
+const DOUBLE_JUMP_VELOCITY = JUMP_VELOCITY * 0.7
 
 #jump count
 var jump_count = 0
@@ -14,33 +14,34 @@ const MAX_JUMPS = 2
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
-	DisplayServer.window_set_title("Knight Adventure")
-
+	pass
 
 func _physics_process(delta):
-	# Add the gravity.
+	
+	# Apply gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		
 	# Handle jump and doublejump.
 	if Input.is_action_just_pressed("jump") and jump_count < MAX_JUMPS:
-		print(jump_count)
-		velocity.y = JUMP_VELOCITY
 		jump_sound.play()
 		jump_count += 1
-		if jump_count == MAX_JUMPS:
+		print(jump_count )
+		if !is_on_floor() and jump_count < 2:
 			velocity.y = DOUBLE_JUMP_VELOCITY
+		if jump_count < MAX_JUMPS and is_on_floor():
+			velocity.y = JUMP_VELOCITY
 		
 	# Get the input direction: -1, 0, 1
 	var direction = Input.get_axis("move_left", "move_right")
 	
 	# Play animations
 	if is_on_floor():
-		jump_count = 0
 		if direction == 0:
 			animated_sprite.play("idle")
 		else:
 			animated_sprite.play("run")
+		jump_count = 0
 	else:
 		animated_sprite.play("jump")
 	
